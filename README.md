@@ -90,23 +90,28 @@ The `data/` directory is excluded from version control via `.gitignore`. Set it 
 
 ### CelebA (Task 3)
 
-Task 3 uses the CelebA dataset. You must place CelebA under `data/` in the layout expected by `torchvision.datasets.CelebA` (with `root='./data'`).
+Task 3 uses the CelebA dataset. Place the dataset under `data/` so that `torchvision.datasets.CelebA(root='./data')` can find it. Torchvision expects a subfolder named `CelebA` (capital C and A) under `root`.
 
-**Expected folder layout:**
+**Actual CelebA folder layout (as downloaded):**
 
 ```
 data/
-└── celeba/
-    ├── img_align_celeba/     # Face images (e.g. 000001.jpg, 000002.jpg, ...)
-    ├── list_attr_celeba.txt
-    ├── list_bbox_celeba.txt
-    ├── list_landmarks_align_celeba.txt
-    └── identity_CelebA.txt
+└── CelebA/
+    ├── Anno/
+    │   ├── identity_CelebA.txt
+    │   ├── list_attr_celeba.txt
+    │   ├── list_bbox_celeba.txt
+    │   ├── list_landmarks_align_celeba.txt
+    │   └── list_landmarks_celeba.txt
+    ├── Eval/
+    │   └── list_eval_partition.txt
+    ├── Img/
+    │   └── img_celeba/          # Face images (e.g. 000001.jpg, 000002.jpg, ...)
+    └── README.txt
 ```
 
-1. Download the CelebA dataset from the [official site](https://mmlab.ie.cuhk.edu.hk/projects/CelebA.html) (Img alignments, and the annotation files).
-2. Create `data/celeba/` and extract the image archive so that images live in `data/celeba/img_align_celeba/`.
-3. Place the annotation files (`list_attr_celeba.txt`, etc.) directly in `data/celeba/`.
+1. Download the CelebA dataset from the [official site](https://mmlab.ie.cuhk.edu.hk/projects/CelebA.html) (Img, Anno, and Eval archives).
+2. Create `data/CelebA/` and extract so that you have `Anno/`, `Eval/`, `Img/img_celeba/` (face images), and `README.txt`. The folder name must be `CelebA` (capital C and A) for torchvision to find it.
 
 If CelebA is not found, the notebook falls back to CIFAR-10 (resized) for Task 3.
 
