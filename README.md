@@ -82,11 +82,33 @@ jupyter notebook
 
 ## Data
 
-Dataset files are stored in the `data/` directory. This directory is excluded from version control via `.gitignore` to keep the repository size manageable.
+The `data/` directory is excluded from version control via `.gitignore`. Set it up as follows to run `code.ipynb`:
 
-For CIFAR-10, the dataset will be automatically downloaded when running the notebook.
+### CIFAR-10 (Task 1 & 2)
 
-For CelebA or other custom datasets, place them in the `data/` directory.
+**No setup needed.** CIFAR-10 is downloaded automatically by `torchvision` when the notebook runs (it will be stored under `data/` by default).
+
+### CelebA (Task 3)
+
+Task 3 uses the CelebA dataset. You must place CelebA under `data/` in the layout expected by `torchvision.datasets.CelebA` (with `root='./data'`).
+
+**Expected folder layout:**
+
+```
+data/
+└── celeba/
+    ├── img_align_celeba/     # Face images (e.g. 000001.jpg, 000002.jpg, ...)
+    ├── list_attr_celeba.txt
+    ├── list_bbox_celeba.txt
+    ├── list_landmarks_align_celeba.txt
+    └── identity_CelebA.txt
+```
+
+1. Download the CelebA dataset from the [official site](https://mmlab.ie.cuhk.edu.hk/projects/CelebA.html) (Img alignments, and the annotation files).
+2. Create `data/celeba/` and extract the image archive so that images live in `data/celeba/img_align_celeba/`.
+3. Place the annotation files (`list_attr_celeba.txt`, etc.) directly in `data/celeba/`.
+
+If CelebA is not found, the notebook falls back to CIFAR-10 (resized) for Task 3.
 
 ## Notes
 
